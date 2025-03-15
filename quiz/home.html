@@ -11,18 +11,41 @@
     <HTTP-equiv="x-ua-compatible" content="IE=edge">
 </head>
 
-<body>
+<body class="alinhaV alinhaH">
     <div name="cabecalho">
         <h1></h1>
     </div>
     <div name="lista">
         <p>Quizes:</p>
-        <div name="listaQiz" id="listaQiz" onload="listagem()"></div>
-    </div>
-    <div name="espaco_criacao" id="areaCriacao1">
-        <div></div>
-        <button type="button" id="btn1" onclick="criar(areaCriacao1)">Criar Novo Quiz?</button>
+        <div id="listaQiz"></div>
+    </div><br>
+    <div class="grandinho" name="espaco_criacao" id="areaCriacao1">
+        <div class="alinhaH alinhaV">
+            <div class="formularioQuiz alinhaV">
+                <form>
+                    <label for="titu">Titulo do Quiz:</label>
+                    <input type="text" id="titu" nome="titu" size="74"><br><br>
+                    <label for="enuncia">Questão apresentada pelo Quiz:</label><br>
+                    <input type="text" id="enuncia" nome="enuncia" size="90"><br><br>
+                    <label for="resp">1° resposta:</label><br>
+                    <input type="text" id="resp" nome="resp" size="90"><br>
+                    <label for="resp1">2° resposta:</label><br>
+                    <input type="text" id="resp1" nome="resp1" size="90"><br>
+                    <div id="respExtra"></div><br>
+                    <button type="button" id="btnMaisResp" onclick="maisOpc()">+ respostas</button>
+                </form>
+            </div>
+            <div class="espacinho">
+                <button type="button" class="btnS" id="btnSalvar" onclick="salvar()">Salvar</button>
+                <button type="button" class="btnC" id="btnCancelar" onclick="criar()">Cancelar</button>
+            </div>
+        </div>
+        <button type="button" id="btnCriar" onclick="criar()">Criar Novo Quiz?</button>
     </div>
     <script>
+        window.onload = function () {
+            console.log("Page fully loaded!");
+            listagem();
+        };
     </script>
 </body>

@@ -10,13 +10,33 @@ button {
   cursor: pointer;
 }
 
-.alinha_vertical {
+.btnS {
+  cursor: pointer;
+  background-color: lightgreen;
+}
+
+.btnS:hover {
+  cursor: pointer;
+  background-color: limegreen;
+}
+
+.btnC {
+  cursor: pointer;
+  background-color: lightcoral;
+}
+
+.btnC:hover {
+  cursor: pointer;
+  background-color: red;
+}
+
+.alinhaV {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.alinha_horizontal {
+.alinhaH {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,13 +47,53 @@ button {
   width: 100dvw;
 }
 
+.grandinho {
+  width: 80dvw;
+}
+
 .area1 {
   display: flex;
   flex-direction: column;
 }
 
-.box_lista {
+.boxLista {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80dvw;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+  padding: 3px;
+  background-color: lightgrey;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-.box_quiz {
+.tituloQuiz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 3px;
+  background-color: white;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.espacinho {
+  display: flex;
+  justify-content: space-around;
+  padding: 3px;
+  width: 20dvw;
+}
+
+.formularioQuiz {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
 }
