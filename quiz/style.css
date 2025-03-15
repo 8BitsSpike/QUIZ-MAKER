@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.alinha_vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alinha_horizontal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.completo {
+  height: 100dvh;
+  width: 100dvw;
+}
+
+.area1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.box_lista {
+}
+
+.box_quiz {
+}
