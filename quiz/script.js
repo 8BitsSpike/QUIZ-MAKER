@@ -44,18 +44,20 @@ function maisperg() {
   //armazenar o que já tem
   let arrayperg = [];
   for (let k = 0; k < nuperg; k++) {
-    let idperg = 'perg' + k + 2;
-    let perg = idperg.querySelector('enuncia').value;
+    let idperg = '#perg' + k;
+    let pergchild = areaperg.querySelector(idperg);
+    let perg = pergchild.querySelector('enuncia').value;
     arrayperg.push(perg);
-    let er = document.getElementById('respExtra').childElementCount;
-    let volresp = 2 + er;
+    let er = areaperg.querySelector('respExtra');
+    let ern = er.childElementCount;
+    let volresp = ern + 2;
     let quizobj = {};
     for (let i = 0; i < volresp; i++) {
       let respnome = '#resp' + i;
-      let respvalor = idperg.querySelector(respnome).value;
+      let respvalor = er.querySelector(respnome).value;
       quizobj[respnome] = respvalor;
     }
-    let gaba = idperg.querySelector('correto').value;
+    let gaba = pergchild.querySelector('correto').value;
     quizobj['gaba'] = gaba;
     arrayperg.push(quizobj);
   }
@@ -71,6 +73,22 @@ function maisperg() {
     newperg +
     '")">+ respostas</button><br><br><label for="correto">Resposta correta:</label><br><input type="number" id="correto" nome="correto" size="3" maxlength="2" required><br></br></div>';
   //devolver o qque tem armazenado
+  for (let j = 0; j < nuperg; j + 2) {
+    let idperg = 'perg' + j + 1;
+    let perg = idperg.querySelector('enuncia');
+    arrayperg.push(perg);
+    let er = document.getElementById('respExtra').childElementCount;
+    let volresp = 2 + er;
+    let quizobj = {};
+    for (let h = 0; i < volresp; h++) {
+      let respnome = '#resp' + h;
+      let respvalor = idperg.querySelector(respnome).value;
+      quizobj[respnome] = respvalor;
+    }
+    let gaba = idperg.querySelector('correto').value;
+    quizobj['gaba'] = gaba;
+    arrayperg.push(quizobj);
+  }
 }
 
 function maisOpc(lugar) {
