@@ -38,29 +38,44 @@ function cancelar() {
 }
 
 function maisperg() {
-//ler o que já tem
-let nuperg = document.getElementById("pergExtras").childElementCount
-//armazenar o que já tem
-let quizobj = {};
-for (let k = 0; k<nuperg; k++){
-let arrayperg = [];
-let idperg = "perg" + k +2;
-let perg = idperg.querySelector("enuncia").value;
-arrayperg.push(perg);
-let er = document.getElementById("respExtra").childElementCount;
-let volresp = 2 + er;
-for (let i = 0; i<volresp; i++) {
-let respnome = "resp" + i;
-let respvalor = 
-}
-}
-//criar nova pergunnta
-//devolver o qque tem armazenado
+  //ler o que já tem
+  let nuperg = document.getElementById('pergExtras').childElementCount;
+  let areaperg = document.getElementById('pergExtras');
+  //armazenar o que já tem
+  let arrayperg = [];
+  for (let k = 0; k < nuperg; k++) {
+    let idperg = 'perg' + k + 2;
+    let perg = idperg.querySelector('enuncia').value;
+    arrayperg.push(perg);
+    let er = document.getElementById('respExtra').childElementCount;
+    let volresp = 2 + er;
+    let quizobj = {};
+    for (let i = 0; i < volresp; i++) {
+      let respnome = '#resp' + i;
+      let respvalor = idperg.querySelector(respnome).value;
+      quizobj[respnome] = respvalor;
+    }
+    let gaba = idperg.querySelector('correto').value;
+    quizobj['gaba'] = gaba;
+    arrayperg.push(quizobj);
+  }
+  //criar nova pergunnta
+  let newperg = 'perg' + nuperg + 1;
+  let btnnome = 'btnMaisResp' + nuperg + 1;
+  areaperg.innerHTML +=
+    '<div id="' +
+    newperg +
+    '"<label for="enuncia">1° Questão apresentada pelo Quiz:</label><br><input type="text" id="enuncia" nome="enuncia" size="90" required><br><br><label for="resp0">1° resposta:</label><br><input type="text" id="resp0" nome="resp" size="90" required><br><label for="resp1">2° resposta:</label><br><input type="text" id="resp1" nome="resp1" size="90" required><br><div id="respExtra"></div><br><button type="button" id="' +
+    btnnome +
+    '" onclick="maisOpc("' +
+    newperg +
+    '")">+ respostas</button><br><br><label for="correto">Resposta correta:</label><br><input type="number" id="correto" nome="correto" size="3" maxlength="2" required><br></br></div>';
+  //devolver o qque tem armazenado
 }
 
 function maisOpc(lugar) {
   const parent = document.getElementById(lugar);
-  const area = parent.querySelector("#respExtra");
+  const area = parent.querySelector('#respExtra');
   let filhotes = area.childElementCount;
   let arrayResposta = [];
   for (let k = 0; k < filhotes; k++) {
@@ -82,7 +97,7 @@ function maisOpc(lugar) {
     '" size="90" required><br></div>';
   area.innerHTML += conteudo;
   for (let i = 0; i < filhotes; i++) {
-    let filhoteAtual = 'resp' + i + 2;
+    let filhoteAtual = '#resp' + i + 2;
     let coleira = area.querySelector(filhoteAtual);
     coleira.value = arrayResposta[i];
   }
