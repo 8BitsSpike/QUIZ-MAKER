@@ -18,8 +18,43 @@ function listagem() {
 
 function criar() {
   let destino = document.getElementById('areaCriacao1');
-  let conteudo =
-    '<div class="alinhaH alinhaV"><div class="formularioQuiz alinhaV"><form><div id="perg1"><label for="titu">Titulo do Quiz:</label><input type="text" id="titu" nome="titu" size="74" required><br><br><label for="enuncia">1° Questão apresentada pelo Quiz:</label><br><input type="text" id="enuncia" nome="enuncia" size="90" required><br><br><label for="resp">1° resposta:</label><br><input type="text" id="resp" nome="resp" size="90" required><br><label for="resp1">2° resposta:</label><br><input type="text" id="resp1" nome="resp1" size="90" required><br><div id="respExtra"></div><br><button type="button" id="btnMaisResp" onclick="maisOpc("perg1")">+ respostas</button><br><br><label for="correto">Resposta correta:</label><br><input type="number" id="correto" nome="correto" size="3" maxlength="2" required><br></div><div id="pergExtas"></div><br><br><button type="button" id="btnMaisPerg" onclick="maisperg()">+ respostas</button><br><br></form></div><div class="espacinho"><button type="button" class="btnS" id="btnSalvar" onclick="salvar()">Salvar</button><button type="button" class="btnC" id="btnCancelar" onclick="cancelar()">Cancelar</button></div></div>';
+  let conteudo = `
+  <div class="alinhaH alinhaV">
+    <div class="formularioQuiz alinhaV">
+      <form>
+        <div id="pergExtras">
+          <div id="perg0">
+            <label for="titu">Titulo do Quiz:</label>
+            <input type="text" id="titu" name="titu" size="74" required><br><br>
+
+            <label for="enuncia">1° Questão apresentada pelo Quiz:</label><br>
+            <input type="text" id="enuncia" name="enuncia" size="90" required><br><br>
+
+            <label for="resp0">1° resposta:</label><br>
+            <input type="text" id="resp0" name="resp" size="90" required><br>
+
+            <label for="resp1">2° resposta:</label><br>
+            <input type="text" id="resp1" name="resp1" size="90" required><br>
+
+            <div id="respExtra"></div><br>
+
+            <button type="button" id="btnMaisResp" onclick="maisOpc('perg0')">+ respostas</button><br><br>
+
+            <label for="correto">Resposta correta:</label><br>
+            <input type="number" id="correto" name="correto" size="3" maxlength="2" required><br><br>
+          </div>
+        </div><br><br>
+
+        <button type="button" id="btnMaisPerg" onclick="maisperg()">+ perguntas</button><br><br>
+      </form>
+    </div>
+
+    <div class="espacinho">
+      <button type="button" class="btnS" id="btnSalvar" onclick="salvar()">Salvar</button>
+      <button type="button" class="btnC" id="btnCancelar" onclick="cancelar()">Cancelar</button>
+    </div>
+  </div>
+`;
   destino.innerHTML = conteudo;
 }
 
@@ -38,56 +73,67 @@ function cancelar() {
 }
 
 function maisperg() {
-  //ler o que já tem
   let nuperg = document.getElementById('pergExtras').childElementCount;
   let areaperg = document.getElementById('pergExtras');
-  //armazenar o que já tem
   let arrayperg = [];
   for (let k = 0; k < nuperg; k++) {
-    let idperg = '#perg' + k;
-    let pergchild = areaperg.querySelector(idperg);
-    let perg = pergchild.querySelector('enuncia').value;
+    let idperg = 'perg' + k;
+    let pergchild = document.getElementById(idperg);
+    if (!pergchild) continue;
+    let perg = pergchild.querySelector("[name='enuncia']").value;
     arrayperg.push(perg);
-    let er = areaperg.querySelector('respExtra');
+    let er = pergchild.querySelector('#respExtra');
     let ern = er.childElementCount;
     let volresp = ern + 2;
     let quizobj = {};
     for (let i = 0; i < volresp; i++) {
-      let respnome = '#resp' + i;
-      let respvalor = er.querySelector(respnome).value;
+      let respnome = 'resp' + i;
+      let respvalor =
+        pergchild.querySelector(`[name='${respnome}']`)?.value || '';
       quizobj[respnome] = respvalor;
     }
-    let gaba = pergchild.querySelector('correto').value;
+
+    let gaba = pergchild.querySelector("[name='correto']").value;
     quizobj['gaba'] = gaba;
     arrayperg.push(quizobj);
   }
-  //criar nova pergunnta
-  let newperg = 'perg' + nuperg + 1;
-  let btnnome = 'btnMaisResp' + nuperg + 1;
-  areaperg.innerHTML +=
-    '<div id="' +
-    newperg +
-    '"<label for="enuncia">1° Questão apresentada pelo Quiz:</label><br><input type="text" id="enuncia" nome="enuncia" size="90" required><br><br><label for="resp0">1° resposta:</label><br><input type="text" id="resp0" nome="resp" size="90" required><br><label for="resp1">2° resposta:</label><br><input type="text" id="resp1" nome="resp1" size="90" required><br><div id="respExtra"></div><br><button type="button" id="' +
-    btnnome +
-    '" onclick="maisOpc("' +
-    newperg +
-    '")">+ respostas</button><br><br><label for="correto">Resposta correta:</label><br><input type="number" id="correto" nome="correto" size="3" maxlength="2" required><br></br></div>';
-  //devolver o qque tem armazenado
-  for (let j = 0; j < nuperg; j + 2) {
-    let idperg = 'perg' + j + 1;
-    let perg = idperg.querySelector('enuncia');
-    arrayperg.push(perg);
-    let er = document.getElementById('respExtra').childElementCount;
-    let volresp = 2 + er;
-    let quizobj = {};
-    for (let h = 0; i < volresp; h++) {
-      let respnome = '#resp' + h;
-      let respvalor = idperg.querySelector(respnome).value;
-      quizobj[respnome] = respvalor;
+  let newperg = 'perg' + nuperg;
+  let btnnome = 'btnMaisResp' + nuperg;
+  let newQuestionHTML = `
+    <div id="${newperg}">
+      <label for="enuncia">${
+        nuperg + 1
+      }° Questão apresentada pelo Quiz:</label><br>
+      <input type="text" name="enuncia" size="90" required><br><br>
+      <label for="resp0">1° resposta:</label><br>
+      <input type="text" name="resp0" size="90" required><br>
+      <label for="resp1">2° resposta:</label><br>
+      <input type="text" name="resp1" size="90" required><br>
+      <div id="respExtra"></div><br>
+      <button type="button" id="${btnnome}" onclick="maisOpc('${newperg}')">+ respostas</button><br><br>
+      <label for="correto">Resposta correta:</label><br>
+      <input type="number" name="correto" size="3" maxlength="2" required><br><br>
+    </div>
+  `;
+  areaperg.insertAdjacentHTML('beforeend', newQuestionHTML);
+  for (let j = 0; j < arrayperg.length; j += 2) {
+    let idperg = 'perg' + j / 2;
+    let pergchild = document.getElementById(idperg);
+    if (!pergchild) continue;
+    let enunciado = pergchild.querySelector("[name='enuncia']");
+    if (enunciado) enunciado.value = arrayperg[j];
+    let er = pergchild.querySelector('#respExtra');
+    let ern = er.childElementCount;
+    let volresp = ern + 2;
+    for (let h = 0; h < volresp; h++) {
+      let respnome = 'resp' + h;
+      let respvalor = pergchild.querySelector(`[name='${respnome}']`);
+      if (respvalor) {
+        respvalor.value = arrayperg[j + 1][respnome];
+      }
     }
-    let gaba = idperg.querySelector('correto').value;
-    quizobj['gaba'] = gaba;
-    arrayperg.push(quizobj);
+    let gaba = pergchild.querySelector("[name='correto']");
+    if (gaba) gaba.value = arrayperg[j + 1]['gaba'];
   }
 }
 
@@ -97,26 +143,22 @@ function maisOpc(lugar) {
   let filhotes = area.childElementCount;
   let arrayResposta = [];
   for (let k = 0; k < filhotes; k++) {
-    let filhoteAtual = '#resp' + k + 2;
-    let coleira = area.querySelector(filhoteAtual).value;
-    arrayResposta.push(coleira);
-  }
-  let nome = 'resp' + filhotes + 2;
-  let posi = filhotes + 3 + '° resposta:';
-  let conteudo =
-    '<div><label for="' +
-    nome +
-    '">' +
-    posi +
-    '</label><br><input type="text" id="' +
-    nome +
-    '" nome="' +
-    nome +
-    '" size="90" required><br></div>';
-  area.innerHTML += conteudo;
-  for (let i = 0; i < filhotes; i++) {
-    let filhoteAtual = '#resp' + i + 2;
+    let filhoteAtual = `#resp${k + 2}`;
     let coleira = area.querySelector(filhoteAtual);
-    coleira.value = arrayResposta[i];
+    if (coleira) arrayResposta.push(coleira.value);
+  }
+  let nome = `resp${filhotes + 2}`;
+  let posi = `${filhotes + 3}° resposta:`;
+  let conteudo = `
+    <div>
+      <label for="${nome}">${posi}</label><br>
+      <input type="text" id="${nome}" name="${nome}" size="90" required><br>
+    </div>
+  `;
+  area.insertAdjacentHTML('beforeend', conteudo);
+  for (let i = 0; i < filhotes; i++) {
+    let filhoteAtual = `#resp${i + 2}`;
+    let coleira = area.querySelector(filhoteAtual);
+    if (coleira) coleira.value = arrayResposta[i];
   }
 }
