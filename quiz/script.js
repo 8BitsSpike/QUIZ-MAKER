@@ -10,7 +10,7 @@ function listagem() {
     for (let k = 0; k < arraylista.length; k++) {
       let qzno = 'quiz' + k;
       let obj = arraylista[qzno];
-      let titulo = obj.enum;
+      let titulo = obj.titulo;
       texto += '<div class="tituloQuiz">' + titulo + '</div><br>';
     }
   }
@@ -63,14 +63,31 @@ function salvar() {
   let crud = document.getElementById('pergExtras');
   let nuperg = crud.childElementCount;
   let quizData = {};
-  for (let k = 0; k < nuperg; k++) {}
-
+  for (let k = 0; k < nuperg; k++) {
+    let pergObj = {};
+    let pergid = 'perg' + k;
+    let perg = crud.querySelector(pergid);
+    let titu = perg.querySelector('titu').value;
+    let ques = perg.querySelector('enuncia').value;
+    let gaba = perg.querySelector('correto').value;
+    pergObj = { titulo: titu, pergunta: ques, gabarito: gaba };
+    let nresp = perg.querySelector('respExtra').childElementCount + 2;
+    for (let i = 0; i < nresp; i++) {
+      let respname = 'resp' + i;
+      let resp = perg.querySelector(respname).value;
+      pergObj[respname] = resp;
+    }
+    quizData[pergid] = pergObj;
+  }
   const coleta = localStorage.getItem('QuizDB');
   const lista = coleta ? JSON.parse(coleta) : 'vazio';
   if (lista == 'vazio') {
     let quiz0 = quizData;
     localStorage.setItem('QuizDB', JSON.stringify(quiz0));
   } else {
+    let nquiz = lista.keys();
+    let nomequiz = 'quiz' + nquiz;
+    lista[nomequiz] = quizData;
     localStorage.setItem('QuizDB', JSON.stringify(lista));
   }
   let areaCriacao = document.getElementById('areaCriacao1');
