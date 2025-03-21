@@ -60,11 +60,18 @@ function criar() {
 }
 
 function salvar() {
+  let crud = document.getElementById('pergExtras');
+  let nuperg = crud.childElementCount;
+  let quizData = {};
+  for (let k = 0; k < nuperg; k++) {}
+
   const coleta = localStorage.getItem('QuizDB');
   const lista = coleta ? JSON.parse(coleta) : 'vazio';
   if (lista == 'vazio') {
-    localStorage.setItem('QuizDB', JSON.stringify(quizData));
+    let quiz0 = quizData;
+    localStorage.setItem('QuizDB', JSON.stringify(quiz0));
   } else {
+    localStorage.setItem('QuizDB', JSON.stringify(lista));
   }
   let areaCriacao = document.getElementById('areaCriacao1');
   let retornoAoNormal =
