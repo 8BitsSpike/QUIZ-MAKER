@@ -1,6 +1,6 @@
 function listagem() {
   let listaQuiz = document.getElementById('listaQuiz');
-  const coleta = localStorage.getItem('listaQuiz');
+  const coleta = localStorage.getItem('QuizDB');
   const lista = coleta ? JSON.parse(coleta) : 'vazio';
   let texto;
   if (lista == 'vazio') {
@@ -8,8 +8,9 @@ function listagem() {
   } else {
     let arraylista = lista['quizes'];
     for (let k = 0; k < arraylista.length; k++) {
-      let obj = arraylista[k];
-      let titulo = obj.titulo;
+      let qzno = 'quiz' + k;
+      let obj = arraylista[qzno];
+      let titulo = obj.enum;
       texto += '<div class="tituloQuiz">' + titulo + '</div><br>';
     }
   }
@@ -59,11 +60,10 @@ function criar() {
 }
 
 function salvar() {
-  let listaQuiz = document.getElementById('listaQuiz');
-  const coleta = localStorage.getItem('listaQuiz');
+  const coleta = localStorage.getItem('QuizDB');
   const lista = coleta ? JSON.parse(coleta) : 'vazio';
   if (lista == 'vazio') {
-    localStorage.setItem('listaQuiz', JSON.stringify(quizData));
+    localStorage.setItem('QuizDB', JSON.stringify(quizData));
   } else {
   }
   let areaCriacao = document.getElementById('areaCriacao1');
