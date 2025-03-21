@@ -1,6 +1,6 @@
 function listagem() {
-  let listaQuiz = document.getElementById('listaQiz');
-  const coleta = localStorage.getItem('listaQiz');
+  let listaQuiz = document.getElementById('listaQuiz');
+  const coleta = localStorage.getItem('listaQuiz');
   const lista = coleta ? JSON.parse(coleta) : 'vazio';
   let texto;
   if (lista == 'vazio') {
@@ -59,6 +59,13 @@ function criar() {
 }
 
 function salvar() {
+  let listaQuiz = document.getElementById('listaQuiz');
+  const coleta = localStorage.getItem('listaQuiz');
+  const lista = coleta ? JSON.parse(coleta) : 'vazio';
+  if (lista == 'vazio') {
+    localStorage.setItem('listaQuiz', JSON.stringify(quizData));
+  } else {
+  }
   let areaCriacao = document.getElementById('areaCriacao1');
   let retornoAoNormal =
     '<button type="button" id="btnCriar" onclick="criar()">Criar Novo Quiz?</button>';
