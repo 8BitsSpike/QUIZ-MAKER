@@ -12,7 +12,7 @@ function listagem() {
       let pergs = lista[qzno];
       let obj = pergs.perg0;
       let titulo = obj.titulo;
-      texto += '<div class="tituloQuiz">' + titulo + '</div>';
+      texto += `<div class="tituloQuiz" onclick="abrir('${qzno}')">${titulo}</div>`;
     }
   }
   listaQuiz.innerHTML += '<div class="boxLista">' + texto + '</div>';
@@ -196,4 +196,8 @@ function maisOpc(lugar) {
     let coleira = area.querySelector(`[id="${filhoteAtual}]`);
     if (coleira) coleira.value = arrayResposta[i];
   }
+}
+
+function abrir(lugar) {
+  console.log(lugar);
 }
