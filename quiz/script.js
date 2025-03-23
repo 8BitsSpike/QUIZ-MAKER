@@ -199,7 +199,12 @@ function maisOpc(lugar) {
 }
 
 function abrir(lugar) {
-  console.log(lugar);
+  let canvas = document.getElementById('corpo');
+  const jsondoc = JSON.parse(localStorage.getItem('QuizDB'));
+  const quiz = jsondoc[lugar];
+  let conteudo = '';
+  let quantperg = Object.keys(quiz).length;
+  console.log(quiz, quantperg);
 }
 
 function entregar() {
