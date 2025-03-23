@@ -86,6 +86,15 @@ button {
   margin-bottom: 3px;
   margin-left: 3px;
   margin-right: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.tituloQuiz:hover {
+  color: whitesmoke;
+  background-color: gray;
+  cursor: pointer;
+  font-size: larger;
+  border-color: rgb(93, 93, 93);
 }
 
 .espacinho {
