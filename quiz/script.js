@@ -201,3 +201,23 @@ function maisOpc(lugar) {
 function abrir(lugar) {
   console.log(lugar);
 }
+
+function entregar() {
+  let canvas = document.getElementById('corpo');
+  let padrao = `
+      <div name="lista">
+        <p>Quizes:</p>
+        <div id="listaQuiz">
+        </div>
+    </div><br>
+    <div class="grandinho" name="espaco_criacao" id='areaCriacao1'>
+        <button type="button" id="btnCriar" onclick="criar()">Criar Novo Quiz?</button>
+    </div>
+    <script>
+        window.onload = function () {
+            listagem();
+        };
+    </script>
+  `;
+  canvas.innerHTML = padrao;
+}
