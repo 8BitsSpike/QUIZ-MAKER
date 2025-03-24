@@ -149,3 +149,21 @@ button {
   position: absolute;
   bottom: 40px;
 }
+
+.abaixadinha {
+  margin-top: 30px;
+}
+
+.procomeco {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.oitentinhaW {
+  width: 80dvw;
+}
+
+.noventinhaW {
+  width: 90dvw;
+}

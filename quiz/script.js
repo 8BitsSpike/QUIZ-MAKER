@@ -203,27 +203,24 @@ function abrir(lugar) {
   const jsondoc = JSON.parse(localStorage.getItem('QuizDB'));
   const quiz = jsondoc[lugar];
   let conteudo = `
-  <div>
-    <div id="cabecalho"></div>
-    <div id="areaQuiz"></div>
-    <div id="control">
-        <br>
-        <div id="quizcontrol">
-            <button type="button" id="btnEnviar" onclick="enviar()">Submeter</button>
-            <button type="button" id="btnLimpar" onclick="limpa()">Limpar respostas</button>
-        </div><br>
-        <div id="navbar">
-            <button type="button" id="btnretornar" onclick="enviar()">Home ↩</button>
-        </div>
+<div class="boxQuiz abaixadinha">
+    <div id="cabecalho">
     </div>
+    <div id="areaQuiz"></div>
+    <br>
+    <div id="quizcontrol" class="espacinho esparrama">
+        <button type="button" id="btnEnviar" onclick="enviar()">Submeter</button>
+        <button type="button" id="btnLimpar" onclick="limpa()">Limpar respostas</button>
+    </div>
+</div><br>
+<div id="navbar" class="colanofundo procomeco noventinhaW">
+    <button type="button" id="btnretornar" onclick="enviar()">Home ↩</button>
 </div>
   `;
   canvas.innerHTML = conteudo;
-  let inicial = quiz[perg0];
+  let inicial = quiz.perg0;
   let titul = inicial.titulo;
-  let cabecalho = `
-
-`;
+  let cabecalho = `<div class="quizTitulo">${titul}</div>`;
   let cabeca = canvas.querySelector("[id='cabecalho']");
   cabeca.innerHTML = cabecalho;
   let quantperg = Object.keys(quiz).length;
