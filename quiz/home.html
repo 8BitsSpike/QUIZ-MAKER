@@ -12,12 +12,12 @@
 </head>
 
 <body class="alinhaV alinhaH" id="corpo">
-    <div name="lista">
+    <div id="lista">
         <p>Quizes:</p>
         <div id="listaQuiz">
         </div>
     </div><br>
-    <div class="grandinho" name="espaco_criacao" id='areaCriacao1'>
+    <div class="grandinho" id='areaCriacao1'>
         <button type="button" id="btnCriar" onclick="criar()">Criar Novo Quiz?</button>
     </div>
     <script>
@@ -26,3 +26,18 @@
         };
     </script>
 </body>
+
+<div>
+    <div id="cabcalho"></div>
+    <div id="areaQuiz"></div>
+    <div id="control">
+        <br>
+        <div id="quizcontrol">
+            <button type="button" id="btnEnviar" onclick="enviar()">Submeter</button>
+            <button type="button" id="btnLimpar" onclick="limpa()">Limpar respostas</button>
+        </div><br>
+        <div id="navbar">
+            <button type="button" id="btnretornar" onclick="enviar()">Home ↩</button>
+        </div>
+    </div>
+</div>

@@ -202,27 +202,39 @@ function abrir(lugar) {
   let canvas = document.getElementById('corpo');
   const jsondoc = JSON.parse(localStorage.getItem('QuizDB'));
   const quiz = jsondoc[lugar];
-  let conteudo = '';
+  let conteudo = `
+  <div>
+    <div id="cabcalho"></div>
+    <div id="areaQuiz"></div>
+    <div id="control">
+        <br>
+        <div id="quizcontrol">
+            <button type="button" id="btnEnviar" onclick="enviar()">Submeter</button>
+            <button type="button" id="btnLimpar" onclick="limpa()">Limpar respostas</button>
+        </div><br>
+        <div id="navbar">
+            <button type="button" id="btnretornar" onclick="enviar()">Home ↩</button>
+        </div>
+    </div>
+</div>
+  `;
+  canvas.innerHTML = conteudo;
   let quantperg = Object.keys(quiz).length;
   console.log(quiz, quantperg);
 }
 
-function entregar() {
+function enviar() {
   let canvas = document.getElementById('corpo');
   let padrao = `
-      <div name="lista">
+    <div id="lista">
         <p>Quizes:</p>
         <div id="listaQuiz">
         </div>
     </div><br>
-    <div class="grandinho" name="espaco_criacao" id='areaCriacao1'>
+    <div class="grandinho" id='areaCriacao1'>
         <button type="button" id="btnCriar" onclick="criar()">Criar Novo Quiz?</button>
     </div>
-    <script>
-        window.onload = function () {
-            listagem();
-        };
-    </script>
   `;
   canvas.innerHTML = padrao;
+  listagem();
 }
