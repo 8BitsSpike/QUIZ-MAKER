@@ -204,7 +204,7 @@ function abrir(lugar) {
   const quiz = jsondoc[lugar];
   let conteudo = `
   <div>
-    <div id="cabcalho"></div>
+    <div id="cabecalho"></div>
     <div id="areaQuiz"></div>
     <div id="control">
         <br>
@@ -219,6 +219,13 @@ function abrir(lugar) {
 </div>
   `;
   canvas.innerHTML = conteudo;
+  let inicial = quiz[perg0];
+  let titul = inicial.titulo;
+  let cabecalho = `
+
+`;
+  let cabeca = canvas.querySelector("[id='cabecalho']");
+  cabeca.innerHTML = cabecalho;
   let quantperg = Object.keys(quiz).length;
   console.log(quiz, quantperg);
 }
