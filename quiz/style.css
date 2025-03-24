@@ -177,3 +177,21 @@ button {
   width: 89dvw;
   box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
 }
+
+.respcaixa {
+  background-color: white;
+  border-radius: 5px;
+  padding: 3px;
+  width: 88dvw;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.respcaixa:hover {
+  background-color: lightblue;
+  font-weight: bold;
+}
+
+.respmark {
+  background-color: lightblue;
+  box-shadow: 2px 3px 3px rgba(3, 15, 252, 0.3);
+}

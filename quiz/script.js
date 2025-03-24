@@ -207,6 +207,25 @@ function abrir(lugar) {
     </div>
     <div id="areaQuiz"></div>
     <br>
+        <script>
+        function destacaescolha() {
+            const groups = [...new Set([...document.querySelectorAll('input[type="radio"]')].map(radio => radio.id))];
+            groups.forEach(group => {
+                const radios = document.querySelectorAll('input[id="' + group + '"]');
+                radios.forEach(radio => {
+                    const label = radio.nextElementSibling;
+                    if (radio.checked) {
+                        label.classList.add('repmark');
+                    } else {
+                        label.classList.remove('repmark');
+                    }
+                });
+            });
+        }
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', destacaescolha);
+        });
+    </script>
     <div id="quizcontrol" class="espacinho esparrama">
         <button type="button" id="btnEnviar" onclick="enviar()">Submeter</button>
         <button type="button" id="btnLimpar" onclick="limpa()">Limpar respostas</button>
@@ -229,7 +248,12 @@ function abrir(lugar) {
     let ques = perg.enuncia;
     let queplace = canvas.querySelector("[id='areaQuiz']");
     queplace.innerHTML = `<div class="pergcaixa alinhaH">${ques}</div><br>`;
-    for (let i = 0; i < nersp; i++) {}
+    let nresp = quantperg - 2;
+    for (let i = 0; i < nresp; i++) {
+      let respid = `resp` + i;
+      let resptext = quiz[respid];
+      let resp = ``;
+    }
   }
 }
 
