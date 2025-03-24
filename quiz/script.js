@@ -68,7 +68,6 @@ function salvar() {
     let pergObj = {};
     let pergid = 'perg' + k;
     let perg = crud.querySelector(`[id='${pergid}']`);
-    console.log(perg, pergid);
     let titu = perg.querySelector("[id='titu']").value;
     let ques = perg.querySelector("[id='enuncia']").value;
     let gaba = perg.querySelector("[id='correto']").value;
@@ -224,7 +223,14 @@ function abrir(lugar) {
   let cabeca = canvas.querySelector("[id='cabecalho']");
   cabeca.innerHTML = cabecalho;
   let quantperg = Object.keys(quiz).length;
-  console.log(quiz, quantperg);
+  for (let k = 0; k < quantperg; k++) {
+    let pergid = 'perg' + k;
+    let perg = quiz[pergid];
+    let ques = perg.enuncia;
+    let queplace = canvas.querySelector("[id='areaQuiz']");
+    queplace.innerHTML = `<div class="pergcaixa alinhaH">${ques}</div><br>`;
+    for (let i = 0; i < nersp; i++) {}
+  }
 }
 
 function enviar() {
