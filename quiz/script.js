@@ -207,11 +207,6 @@ function abrir(lugar) {
     </div>
     <div id="areaQuiz" class="pergcaixa"></div>
     <br>
-        <script>
-        radioButtons.forEach(radio => {
-            radio.addEventListener('change', destaca());
-        });
-    </script>
     <div id="quizcontrol" class="espacinho esparrama">
         <button type="button" id="btnEnviar" onclick="enviar()">Submeter</button>
         <button type="button" id="btnLimpar" onclick="limpa()">Limpar respostas</button>
@@ -238,14 +233,13 @@ function abrir(lugar) {
     for (let i = 0; i < nresp; i++) {
       let respid = `resp` + i;
       let resptext = perg[respid];
-      let resp = `<div class="respcaixa btn alinhaH" onclick="destaca()"><label><input type="radio" name="${pergid}" id="${respid}" value="${i}"> ${resptext}</label></div>`;
+      let resp = `<div class="respcaixa btn alinhaH" onclick="destaca()"><label class=""><input type="radio" name="${pergid}" id="${respid}" value="${i}"> ${resptext}</label></div>`;
       queplace.insertAdjacentHTML('beforeend', resp);
     }
   }
 }
 
 function destaca() {
-  console.log('ativado');
   const groups = [
     ...new Set(
       [...document.querySelectorAll('input[type="radio"]')].map(
@@ -253,15 +247,16 @@ function destaca() {
       )
     ),
   ];
-  console.log(groups);
   groups.forEach((group) => {
     const radios = document.querySelectorAll('input[name="' + group + '"]');
+    console.log(radios);
     radios.forEach((radio) => {
-      const label = radio.nextElementSibling;
+      const lab = radio.parentElement;
+      const label = lab.parentElement;
       if (radio.checked) {
-        label.classList.add('repmark');
+        label.classList.add('respmark');
       } else {
-        label.classList.remove('repmark');
+        label.classList.remove('respmark');
       }
     });
   });
