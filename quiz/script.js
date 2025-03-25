@@ -205,25 +205,11 @@ function abrir(lugar) {
 <div class="boxQuiz abaixadinha">
     <div id="cabecalho">
     </div>
-    <div id="areaQuiz"></div>
+    <div id="areaQuiz" class="pergcaixa"></div>
     <br>
         <script>
-        function destacaescolha() {
-            const groups = [...new Set([...document.querySelectorAll('input[type="radio"]')].map(radio => radio.id))];
-            groups.forEach(group => {
-                const radios = document.querySelectorAll('input[id="' + group + '"]');
-                radios.forEach(radio => {
-                    const label = radio.nextElementSibling;
-                    if (radio.checked) {
-                        label.classList.add('repmark');
-                    } else {
-                        label.classList.remove('repmark');
-                    }
-                });
-            });
-        }
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', destacaescolha);
+            radio.addEventListener('change', destaca());
         });
     </script>
     <div id="quizcontrol" class="espacinho esparrama">
@@ -245,16 +231,40 @@ function abrir(lugar) {
   for (let k = 0; k < quantperg; k++) {
     let pergid = 'perg' + k;
     let perg = quiz[pergid];
-    let ques = perg.enuncia;
+    let ques = perg.pergunta;
     let queplace = canvas.querySelector("[id='areaQuiz']");
-    queplace.innerHTML = `<div class="pergcaixa alinhaH">${ques}</div><br>`;
-    let nresp = quantperg - 2;
+    queplace.innerHTML = `<div class="alinhaH">${ques}</div><br>`;
+    let nresp = Object.keys(perg).length - 3;
     for (let i = 0; i < nresp; i++) {
       let respid = `resp` + i;
-      let resptext = quiz[respid];
-      let resp = ``;
+      let resptext = perg[respid];
+      let resp = `<div class="respcaixa btn alinhaH" onclick="destaca()"><label><input type="radio" name="${pergid}" id="${respid}" value="${i}"> ${resptext}</label></div>`;
+      queplace.insertAdjacentHTML('beforeend', resp);
     }
   }
+}
+
+function destaca() {
+  console.log('ativado');
+  const groups = [
+    ...new Set(
+      [...document.querySelectorAll('input[type="radio"]')].map(
+        (radio) => radio.name
+      )
+    ),
+  ];
+  console.log(groups);
+  groups.forEach((group) => {
+    const radios = document.querySelectorAll('input[name="' + group + '"]');
+    radios.forEach((radio) => {
+      const label = radio.nextElementSibling;
+      if (radio.checked) {
+        label.classList.add('repmark');
+      } else {
+        label.classList.remove('repmark');
+      }
+    });
+  });
 }
 
 function enviar() {
