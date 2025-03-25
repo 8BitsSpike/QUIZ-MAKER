@@ -249,7 +249,6 @@ function destaca() {
   ];
   groups.forEach((group) => {
     const radios = document.querySelectorAll('input[name="' + group + '"]');
-    console.log(radios);
     radios.forEach((radio) => {
       const lab = radio.parentElement;
       const label = lab.parentElement;
