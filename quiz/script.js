@@ -6,6 +6,7 @@ function listagem() {
   if (lista == 'vazio') {
     texto = 'Nenhum Quiz até o momento';
   } else {
+    console.log(lista);
     let arraylista = Object.keys(lista);
     for (let k = 0; k < arraylista.length; k++) {
       let qzno = 'quiz' + k;
@@ -68,10 +69,13 @@ function salvar() {
     let pergObj = {};
     let pergid = 'perg' + k;
     let perg = crud.querySelector(`[id='${pergid}']`);
-    let titu = perg.querySelector("[id='titu']").value;
+    if (pergid == 'perg0') {
+      let titu = perg.querySelector("[id='titu']").value;
+      pergObj = { titulo: titu };
+    }
     let ques = perg.querySelector("[id='enuncia']").value;
     let gaba = perg.querySelector("[id='correto']").value;
-    pergObj = { titulo: titu, pergunta: ques, gabarito: gaba };
+    pergObj = { pergunta: ques, gabarito: gaba };
     let nresp = perg.querySelector("[id='respExtra']").childElementCount + 2;
     for (let i = 0; i < nresp; i++) {
       let respname = 'resp' + i;
