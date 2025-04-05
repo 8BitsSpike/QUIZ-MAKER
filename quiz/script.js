@@ -227,12 +227,14 @@ function abrir(lugar) {
   let cabeca = canvas.querySelector("[id='cabecalho']");
   cabeca.innerHTML = cabecalho;
   let quantperg = Object.keys(quiz).length;
+  console.log(quantperg);
   for (let k = 0; k < quantperg; k++) {
     let pergid = 'perg' + k;
     let perg = quiz[pergid];
     let ques = perg.pergunta;
     let queplace = canvas.querySelector("[id='areaQuiz']");
-    queplace.innerHTML = `<div class="alinhaH">${ques}</div><br>`;
+    let pquiz = `<div class="alinhaH">${ques}</div><br>`;
+    queplace.insertAdjacentHTML('beforeend', pquiz);
     let nresp = Object.keys(perg).length - 3;
     for (let i = 0; i < nresp; i++) {
       let respid = `resp` + i;
