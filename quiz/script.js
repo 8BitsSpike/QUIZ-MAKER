@@ -6,7 +6,6 @@ function listagem() {
   if (lista == 'vazio') {
     texto = 'Nenhum Quiz até o momento';
   } else {
-    console.log(lista);
     let arraylista = Object.keys(lista);
     for (let k = 0; k < arraylista.length; k++) {
       let qzno = 'quiz' + k;
@@ -69,13 +68,13 @@ function salvar() {
     let pergObj = {};
     let pergid = 'perg' + k;
     let perg = crud.querySelector(`[id='${pergid}']`);
-    if (k === 0) {
-      let titu = perg.querySelector("[id='titu']").value;
-      pergObj = { titulo: titu };
-    }
     let ques = perg.querySelector("[id='enuncia']").value;
     let gaba = perg.querySelector("[id='correto']").value;
     pergObj = { pergunta: ques, gabarito: gaba };
+    if (k === 0) {
+      let titu = perg.querySelector("[id='titu']").value;
+      pergObj.titulo = titu;
+    }
     let nresp = perg.querySelector("[id='respExtra']").childElementCount + 2;
     for (let i = 0; i < nresp; i++) {
       let respname = 'resp' + i;
@@ -182,7 +181,7 @@ function maisOpc(lugar) {
   let arrayResposta = [];
   for (let k = 0; k < filhotes; k++) {
     let filhoteAtual = `resp${k + 2}`;
-    let coleira = area.querySelector(`[id="${filhoteAtual}]`);
+    let coleira = area.querySelector(`[id="${filhoteAtual}"]`);
     if (coleira) arrayResposta.push(coleira.value);
   }
   let nome = `resp${filhotes + 2}`;
@@ -196,7 +195,7 @@ function maisOpc(lugar) {
   area.insertAdjacentHTML('beforeend', conteudo);
   for (let i = 0; i < filhotes; i++) {
     let filhoteAtual = `#resp${i + 2}`;
-    let coleira = area.querySelector(`[id="${filhoteAtual}]`);
+    let coleira = area.querySelector(`[id="${filhoteAtual}"]`);
     if (coleira) coleira.value = arrayResposta[i];
   }
 }
@@ -209,7 +208,7 @@ function abrir(lugar) {
 <div class="boxQuiz abaixadinha">
     <div id="cabecalho">
     </div>
-    <div id="areaQuiz" class="pergcaixa"></div>
+    <div id="areaQuiz"></div>
     <br>
     <div id="quizcontrol" class="espacinho esparrama">
         <button type="button" id="btnEnviar" onclick="enviar()">Submeter</button>
@@ -227,20 +226,20 @@ function abrir(lugar) {
   let cabeca = canvas.querySelector("[id='cabecalho']");
   cabeca.innerHTML = cabecalho;
   let quantperg = Object.keys(quiz).length;
-  console.log(quantperg);
   for (let k = 0; k < quantperg; k++) {
     let pergid = 'perg' + k;
     let perg = quiz[pergid];
     let ques = perg.pergunta;
     let queplace = canvas.querySelector("[id='areaQuiz']");
-    let pquiz = `<div class="alinhaH">${ques}</div><br>`;
+    let pquiz = `<div id="${pergid}" class="pergcaixa"><div class="alinhaH">${ques}</div></div><br>`;
     queplace.insertAdjacentHTML('beforeend', pquiz);
     let nresp = Object.keys(perg).length - 3;
     for (let i = 0; i < nresp; i++) {
+      let persplace = queplace.querySelector(`[id="${pergid}"]`);
       let respid = `resp` + i;
       let resptext = perg[respid];
       let resp = `<div class="respcaixa btn alinhaH" onclick="destaca()"><label class=""><input type="radio" name="${pergid}" id="${respid}" value="${i}"> ${resptext}</label></div>`;
-      queplace.insertAdjacentHTML('beforeend', resp);
+      persplace.insertAdjacentHTML('beforeend', resp);
     }
   }
 }
