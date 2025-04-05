@@ -69,7 +69,7 @@ function salvar() {
     let pergObj = {};
     let pergid = 'perg' + k;
     let perg = crud.querySelector(`[id='${pergid}']`);
-    if (pergid == 'perg0') {
+    if (k === 0) {
       let titu = perg.querySelector("[id='titu']").value;
       pergObj = { titulo: titu };
     }
