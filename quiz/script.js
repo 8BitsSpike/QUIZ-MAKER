@@ -2,6 +2,7 @@ function listagem() {
   let listaQuiz = document.getElementById('listaQuiz');
   const coleta = localStorage.getItem('QuizDB');
   const lista = coleta ? JSON.parse(coleta) : 'vazio';
+  console.log(lista);
   let texto = '';
   if (lista == 'vazio') {
     texto = 'Nenhum Quiz até o momento';
@@ -233,7 +234,10 @@ function abrir(lugar) {
     let queplace = canvas.querySelector("[id='areaQuiz']");
     let pquiz = `<div id="${pergid}" class="pergcaixa"><div class="alinhaH">${ques}</div></div><br>`;
     queplace.insertAdjacentHTML('beforeend', pquiz);
-    let nresp = Object.keys(perg).length - 3;
+    let nresp = Object.keys(perg).length - 2;
+    if (pergid == 'perg0') {
+      nresp = Object.keys(perg).length - 3;
+    }
     for (let i = 0; i < nresp; i++) {
       let persplace = queplace.querySelector(`[id="${pergid}"]`);
       let respid = `resp` + i;
