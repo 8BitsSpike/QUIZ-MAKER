@@ -1,2 +1,1 @@
-blog code goes here
-more code goes here
+Blog tem as mesmas funções do quiz
