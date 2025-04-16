@@ -205,8 +205,7 @@ function abrir(lugar) {
   let canvas = document.getElementById('corpo');
   const jsondoc = JSON.parse(localStorage.getItem('QuizDB'));
   const quiz = jsondoc[lugar];
-  let conteudo = `
-<div class="boxQuiz abaixadinha">
+  let conteudo = `<div class="boxQuiz abaixadinha">
     <div id="cabecalho">
     </div>
     <div id="areaQuiz"></div>
@@ -214,11 +213,8 @@ function abrir(lugar) {
     <div id="quizcontrol" class="espacinho esparrama">
         <button type="button" id="btnEnviar" onclick="enviar()">Submeter</button>
         <button type="button" id="btnLimpar" onclick="limpa()">Limpar respostas</button>
-    </div>
-</div><br>
-<div id="navbar" class="colanofundo procomeco noventinhaW">
-    <button type="button" id="btnretornar" onclick="enviar()">Home ↩</button>
-</div>
+    </div></div><br><div id="navbar" class="colanofundo procomeco noventinhaW">
+    <button type="button" id="btnretornar" onclick="enviar()">Home ↩</button></div>
   `;
   canvas.innerHTML = conteudo;
   let inicial = quiz.perg0;
